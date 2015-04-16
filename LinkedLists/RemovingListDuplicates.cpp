@@ -38,7 +38,7 @@ vector<T> removeListDuplicates(Node<T> *head)
 	return removedData;
 }
 
-// Brute force inplace removal of duplicates
+// Brute force inplace removal of duplicates without changing order
 // O(n2) time
 // O(1) space
 template <typename T>
@@ -72,7 +72,7 @@ vector<T> removeListDuplicatesBrute(Node<T> *head)
 	return removedData;
 }
 
-int main(int argc, char** argv)
+void testRemoveListDuplicates()
 {
 	// First removal
 	cout << "First removal" << endl;
@@ -83,7 +83,7 @@ int main(int argc, char** argv)
 	head->appendToTail(2);
 	head->appendToTail(5);
 	head->appendToTail(1);
-	head->appendToTail(1);
+	head->appendToTail(11);
 	head->appendToTail(1);
 	head->appendToTail(1);
 
@@ -99,7 +99,10 @@ int main(int argc, char** argv)
 		cout << i << ",";
 	}
 	cout << endl;
+}
 
+void testRemoveListDuplicatesBrute()
+{
 	// Brute force removal
 	cout << "Brute force removal" << endl;
 	Node<int> *headb = new Node<int>(4);
@@ -109,7 +112,7 @@ int main(int argc, char** argv)
 	headb->insertAfter(2);
 	headb->appendToTail(3);
 	headb->appendToTail(4);
-	headb->appendToTail(2);
+	headb->appendToTail(20);
 	headb->appendToTail(5);
 	headb->appendToTail(1);
 	headb->appendToTail(1);
@@ -128,5 +131,10 @@ int main(int argc, char** argv)
 		cout << i << ",";
 	}
 	cout << endl;
+}
 
+int main(int argc, char** argv)
+{
+	testRemoveListDuplicates();
+	testRemoveListDuplicatesBrute();
 }
