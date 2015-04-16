@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <iostream>
 
 template <typename T>
 class Node {
@@ -53,6 +54,19 @@ public:
 			curr = curr->next_;
 		}
 		return deleted;
+	}
+
+	// Prints out the list from the given Node to the end
+	void printList()
+	{
+		std::cout << this->data_;
+		Node<T> *curr = this->next_;
+		while(curr != NULL)
+		{
+			std::cout << "->" << curr->data_;
+			curr = curr->next_;
+		}
+		std::cout << std::endl;
 	}
 };
 
