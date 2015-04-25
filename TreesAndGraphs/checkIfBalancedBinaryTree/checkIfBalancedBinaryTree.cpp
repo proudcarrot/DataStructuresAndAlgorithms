@@ -13,6 +13,9 @@ using namespace std;
 template <typename T>
 pair<int,int> nodeHelper(int depth, BTNode<T> *node)
 {
+	// If the node is a leaf or doesn't have a right or
+	// left child, this is the deepest it will go in that
+	// direction
 	pair<int,int> L = make_pair(depth,depth);
 	pair<int,int> R = make_pair(depth,depth);
 
@@ -35,7 +38,7 @@ bool BinaryTreeUtils::isBinaryTreeBalanced(BTNode<T> *head)
 	{
 		return true;
 	}
-	
+
 	pair<int,int> minAndMaxDepth = nodeHelper(0,head);
 
 	cout << "Min depth: " << minAndMaxDepth.first << endl;
