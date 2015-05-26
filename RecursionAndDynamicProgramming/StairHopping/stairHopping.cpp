@@ -19,6 +19,10 @@ map<int,long> g_mapNumRoutes;
 // Starts with the number of stairs and subtracts down. If 0 is 
 // passed, it is not an acceptable route, however if it is reached, 
 // it is a potential route. Otherwise, recursion needs to continue.
+// Without caching this solution takes O(3^n) time and uses O(3^n)
+// space
+// With caching the solution takes O(n) time because each number is
+// only called once and takes O(n) space
 long takeXSteps(int n)
 {
 	if(n < 0)
@@ -56,6 +60,10 @@ int main()
 {
 	// With a long, it can get to 73 without overflow (for my 
 	// compiler)
+	// Testing negative numbers and 0 as they should get zero
+	// steps since these aren't possibilities. (0 could be argued
+	// to have 1 route). Then testing positive numbers and showing
+	// overflow
 	for(int i=-2; i<78; ++i)
 	{
 		cout << i << " Steps: " << getNumRoutes(i) << endl;
