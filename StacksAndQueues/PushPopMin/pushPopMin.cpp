@@ -3,6 +3,10 @@
 
 using namespace std;
 
+// Implementing a Stack with push, pop and min in constant time
+// (push is amortized constant)
+// A min stack is used to keep track of historical mins
+
 Stack::Stack() {
 
 }
