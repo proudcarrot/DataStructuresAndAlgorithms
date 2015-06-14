@@ -1,4 +1,4 @@
-#include "binaryTree.h" // for BTNode
+#include "../binaryTree.h" // for BTNode
 #include "checkIfBalancedBinaryTree.h" // for checkIfBalancedBinaryTree
 #include <iostream> // for cout, endl
 

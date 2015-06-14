@@ -1,7 +1,7 @@
 #ifndef CHECKIFBALANCEDBINARYTREE
 #define CHECKIFBALANCEDBINARYTREE
 
-#include "binaryTree.h" // for BTNodes
+#include "../binaryTree.h" // for BTNodes
 
 namespace BinaryTreeUtils {
 	template <typename T>
