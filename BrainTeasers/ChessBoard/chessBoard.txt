@@ -1,0 +1,14 @@
+Problem: 
+
+You have an 8x8 chess board where diagonally opposite corners have been 
+cut off. If you are give 31 dominos where a single domino can cover 2 
+spaces, can you cover the entire board?
+
+Solution:
+
+No, because you can't cover the 26 square outer bounds of the board 
+fully with 13 dominos.
+
+Another way to prove this has to do with the colors of the chess board. 
+Each domino will cover a black and a white square. Taking away diagonal 
+squares takes away 2 of the same color so the dominos cannot cover the squares exactly.
