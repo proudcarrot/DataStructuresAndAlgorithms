@@ -1,0 +1,127 @@
+Problem:
+Imagine you have a call center with 3 levels of employess: respondent, 
+manager, and director. An incoming call must be first allocated to a
+free respondent. If the respondent is not free or can't handle the call, 
+he or she must escalate it to a manager. If the manager is not free or 
+can't handle the call, he or she must escalate it to a director. Design 
+the classes and data structures associated with this. Implement a 
+dispatchCall() method which assigns a call to the first available 
+employee.
+
+Solution:
+
+1. Handle ambiguity
+
+	If there are no free respondents at the time of the call does the 
+	call get auto escalated?
+	Yes, it will go to the next higher up person assuming there is 
+	someone higher up that can take the call.
+
+	Who is this for? A call center with 3 levels of employees
+	What is it for? To determine who handles calls
+	When is it used? When a call comes in to the center, or a lower 
+	level employee is unable to deal with a call
+	Why is it used? Because respondents may not be able to answer all of 
+	the questions
+	How is implemented? By routing calls to different people
+
+2. Define core objects
+
+	Respondent
+	Manager
+	Director
+	Router
+	Call - a specific call, maybe containing how long the call took, 
+	where it was from, who answered it (to get stats per employee)
+
+3. Analyze Relationships
+
+	Respondents, Managers and Directors all inherit from class Employee.
+	Class employee has an employee level and a canHandleCall(Call call) 
+	method. 
+	The employee level refers to whether they are a Respondent, Manager 
+	or Director.
+	The canHandleCall method will be implemented differently for each 
+	employee level.
+
+	Call class will have a variable indicating the highest level of 
+	employee that the call has seen and a bool indicating whether the 
+	call has been completed. It might have a startTime variable to 
+	determine how long the call is taking, a variable indicating where it 
+	is from, and some sort of context to indicate what it is about so 
+	that the canHandleCall method in employee can determine whether or 
+	not the call can be handled by that employee.
+
+	Router class will have a dispatchCall method. It will have 3 queues 
+	for each of the employee types. These queues will contain available 
+	employees. The router class will also have a getAvailableEmployee 
+	method that will take in the call to determine what level of 
+	employee the call needs and will return an available employee. If 
+	there are no available employees at the time it will wait until one 
+	is free. This method will likely need to use locks so that 1 employee 
+	isn't assigned multiple people.
+
+4. Investigate actions
+
+	This has mostly been discussed above. The following will outline the 
+	classes in a C++ like manner.
+
+
+	Outline of Design:
+
+	Employee {
+	  public:
+	  	int employeeLevel_;
+	  	bool canHandleCall();
+	};
+
+	Respondent : public Employee {
+	  public:
+	  	Respondent() {
+	  		employeeLevel_ = 1;
+	  	}
+	};
+
+	Manager : public Employee {
+	  public:
+	  	Manager() {
+	  		employeeLevel_ = 2;
+	  	}
+	};
+
+	Director : public Employee {
+	  public:
+	  	Director() {
+	  		employeeLevel_ = 3;
+	  	}
+	};
+
+	Call {
+	  public:
+	  	Call(Data infoAboutCall) {
+	  		highestEmployeeLevel_ = 0;
+	  	}
+	  	int highestEmployeeLevel_;
+	  	bool completed_;
+	};
+
+	Router {
+	  public:
+	  	void dispatchCall(Call call) {
+	  		while(!call.completed_) {
+	  			Employee e = getAvailableEmployee(call);
+	  			if(e.canHandleCall(call)) {
+	  				call.completed_ = true;
+	  			}
+	  			else {
+	  				++call.highestEmployeeLevel_;
+	  			}
+	  			putEmployeeOnQueue(e);
+	  		}
+	  	}
+	  	getAvailableEmployee(Call call);
+	  	putEmployeeOnQueue(Employee e);
+	  	queue<Respondent> respondents;
+	  	queue<Manager> managers;
+	  	queue<Director> directors;
+	};
