@@ -1,0 +1,19 @@
+
+What is the difference between threads and processes?
+
+My Answer:
+
+Threads have shared memory
+Processes have their own buckets of memory carved out
+	In parallel computing could have shared resources
+
+Answer:
+
+Process is an instance of a program in execution
+Is an independent entity to which system resources (CPU time and memory) are allocated
+Processes cannot access each others memory
+To communicate between processes, you need pipes, files, sockets or other such things
+
+Threads exist within processes. They share the process' resources. They have their own registers and stack but they share the heap, this means that changes by one thread will be seen by other threads. 
+A thread is a particular execution path of a process. 
+
