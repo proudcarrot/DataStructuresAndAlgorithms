@@ -11,7 +11,9 @@ time is O(n) in the worst case, O(1) amortized if there are few
 collisions. This means that the hashing function must be very good. 
 Insertion for a hash table assuming no collisions is O(1).
 
-STL Map is implemented as a binary search tree. O(logn) lookup and insertion. 
+STL Map is implemented as a binary search tree. O(logn) lookup and 
+insertion. 
 
-These are both uses for uniqueness with key/value pairs. If the number of inputs is small, a map is a good option instead of a hash table.
+These are both uses for uniqueness with key/value pairs. If the number 
+of inputs is small, a map is a good option instead of a hash table.
 
