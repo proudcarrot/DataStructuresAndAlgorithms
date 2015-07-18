@@ -8,12 +8,7 @@ this crash? How would you test each one?
 
 Answer:
 
-First ask about use cases:
-Who uses it?
-How do they use it?
-What kind of application?
-
-From the basic info of the question:
+From the basic info of the question these are the possibilities:
 
 1. A random variable is used : could make something go out of range. 
 Or it is a vairable that is seemingly random because it is never 
@@ -22,3 +17,16 @@ initialized.
 cause it to crash
 3. Memory leak : the memory may be constantly increasing because of a 
 memory leak.
+
+To test them:
+
+First ask about use cases:
+Who uses it?
+How do they use it?
+What kind of application?
+
+1. See if rand is used in the program. Look for uninitialized data
+2. Determine whether there is user input by running the program. If so, 
+try inputting different things to see if that affects it.
+3. Look at how much memory the application is consuming over the course
+of its lifetime.
