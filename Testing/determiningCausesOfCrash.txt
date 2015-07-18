@@ -1,0 +1,24 @@
+Question:
+
+You are given the source to an application which crashes when it runs. 
+After running it 10 times in a debugger, you notice it doesn't crash in
+the same place each time. The application is single threaded, and it only
+uses the C standard library. What programming errors could be causing 
+this crash? How would you test each one?
+
+Answer:
+
+First ask about use cases:
+Who uses it?
+How do they use it?
+What kind of application?
+
+From the basic info of the question:
+
+1. A random variable is used : could make something go out of range. 
+Or it is a vairable that is seemingly random because it is never 
+initialized.
+2. User input : the program depends on user input and some inputs could 
+cause it to crash
+3. Memory leak : the memory may be constantly increasing because of a 
+memory leak.
