@@ -1,0 +1,17 @@
+Question:
+
+Compare and contrast a hash table and an STL map. How is a hash table 
+implemented? If the number of inputs is small, which data structure 
+options can be used instead of a hash table?
+
+Answer:
+
+Hash tables are often implemented as an array of lists. Their lookup up 
+time is O(n) in the worst case, O(1) amortized if there are few 
+collisions. This means that the hashing function must be very good. 
+Insertion for a hash table assuming no collisions is O(1).
+
+STL Map is implemented as a binary search tree. O(logn) lookup and insertion. 
+
+These are both uses for uniqueness with key/value pairs. If the number of inputs is small, a map is a good option instead of a hash table.
+
